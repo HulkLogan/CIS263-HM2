@@ -20,7 +20,8 @@ public class Main {
         // cost is zero when multiplying one matrix.
         for (i = 1; i < n; i++)
             m[i][i] = 0;
-        String output = null;
+        
+        String output = "";
         System.out.println("Initial Solution Matrix:");
         for(int x = 0; x < m.length; x++){
         	for(int y = 0; y < m.length; y++){
@@ -48,7 +49,7 @@ public class Main {
                     q = m[i][k] + m[k+1][j] + p[i-1]*p[k]*p[j];
                     if (q < m[i][j])
                         m[i][j] = q;
-	                    output = null;
+	                    output = "";
 	                    System.out.println("#" + count++ + " Solution Matrix");
 	                    for(int x = 0; x < m.length; x++){
 	                    	for(int y = 0; y < m.length; y++){
@@ -65,7 +66,7 @@ public class Main {
             }
         }
         System.out.println("Final Solution Matrix:");
-        output = null;
+        output = "";
         for(int x = 0; x < m.length; x++){
         	for(int y = 0; y < m.length; y++){
         		output = output.concat("{");
@@ -84,7 +85,7 @@ public class Main {
     public static void main(String args[])
     {
     	String testFile = "test.txt";
-    	String line = null;
+    	String line = "";
     	String stringArray[] = new String[11];
     	int intArray[] = new int[11];
     	int arrayIndex = 0;
@@ -99,8 +100,8 @@ public class Main {
 	    	}
 	    	arrayIndex = 1;
 	    	matrixSize = Integer.parseInt(stringArray[0]);
-	    	for(int i = arrayIndex; i < matrixSize; i++){
-	    		intArray[arrayIndex] = Integer.parseInt(stringArray[arrayIndex]);
+	    	for(int i = arrayIndex; i <= matrixSize; i++){
+	    		intArray[arrayIndex - 1] = Integer.parseInt(stringArray[arrayIndex]);
 	    		arrayIndex++;
 	    	}
 	    	bufferReader.close();
@@ -113,10 +114,11 @@ public class Main {
     	}
     	arrayIndex = 0;
     	for(int i = arrayIndex; i < matrixSize; i++){
-    		System.out.println("Input:");
-    		System.out.println(stringArray[arrayIndex]);
+    		System.out.println("IntArray @" + i);
+    		System.out.println(intArray[i]);
+    		
     	}
-    	
+    	System.out.println("Matrix Size:" + matrixSize);
         System.out.println("Minimum number of multiplications is "+
                            MatrixChainOrder(intArray, matrixSize));
     }
